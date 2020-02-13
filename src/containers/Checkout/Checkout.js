@@ -18,9 +18,8 @@ class Checkout extends Component {
             if (param[0] === 'price') {
                 price = param[1];
             } else {
-                ingredients[param[0]] = +param[1];
+                ingredients[param[0]] =+param[1];
             }
-            ingredients[param[0]] = +param[1];
         }
         this.setState({ingredients: ingredients, totalPrice: price});
     }
@@ -29,7 +28,7 @@ class Checkout extends Component {
         this.props.history.goBack();
     }
 
-    checkoutContinueHandler = () => {
+    checkoutContinuedHandler = () => {
         this.props.history.replace('/checkout/contact-data');
     }
 
@@ -37,12 +36,12 @@ class Checkout extends Component {
         return (
             <div>
                 <CheckoutSummary 
-                ingredients={this.state.ingredients}
-                checkoutCancelled={this.checkoutCancelledHandler}
-                checkoutContinue={this.checkoutContinueHandler}  />
+                    ingredients={this.state.ingredients}
+                    checkoutCancelled={this.checkoutCancelledHandler}
+                    checkoutContinued={this.checkoutContinuedHandler}  />
                 <Route 
-                path={this.props.match.path + '/contact-data'} 
-                render={(props) => (<ContactData ingredients={this.state.ingredients} price={this.state.totalPrice} {...props}/>)} />
+                    path={this.props.match.path + '/contact-data'} 
+                    render={(props) => (<ContactData ingredients={this.state.ingredients} price={this.state.totalPrice} {...props}/>)} />
             </div>
         )
     }
